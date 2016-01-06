@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014 Google Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources>
+
+    <string name="app_name">Project Tango Java Point Cloud</string>
+    <string name="menu_name">Java Point Cloud</string>
+    <string name="vertex_count">Number of points:</string>
+    <string name="serviceversion">Tango service version:</string>
+    <string name="appversion">"App version: "</string>
+    <string name="tangoevent">"Tango system event: "</string>
+    <string name="start2device">Target->Device, Base->Start: </string>
+    <string name="posecount">", count: "</string>
+    <string name="status">"status: "</string>
+    <string name="deltatime">", delta time (ms): "</string>
+    <string name="pose">", position (m): "</string>
+    <string name="quat">", orientation: "</string>
+    <string name="first_person">First</string>
+    <string name="third_person">Third</string>
+    <string name="top_down">Top</string>
+    <string name="start">Start</string>
+    <string name="autoreseton">Auto Reset On</string>
+    <string name="autoresetoff">Auto Reset Off</string>
+    <string name="averageZ">"Average depth (m): "</string>
+    <string name="pointCount">"Point count: "</string>
+    <string name="frameDelta">"Frame delta time (ms): "</string>
+    <string name="TangoError">"Tango Exception! Try again!"</string>
+    <string name="TangoOutOfDateException">"Tango Service outdated!"</string>
+    <string name="motiontrackingpermission">"Motion Tracking permission needed!"</string>
+    <string name="NA">"N/A"</string>
+    <string name="pose_initializing">"initializing"</string>
+    <string name="pose_valid">"valid"</string>
+    <string name="pose_invalid">"invalid"</string>
+    <string name="pose_unknown">"unknown"</string>
+    <string name="latest_adf_is">", Latest ADF is: "</string>
+    <string name="clear_canvas">Clear</string>
+    <string name="restart">Restart</string>
+    <string name="save">Save</string>
+    <string name="name_text_dialog">Enter File Name</string>
+    <string name="name_edittext_dialog">Enter text here..</string>
+
+    <string name="action_settings">Camera Range</string>
+    <string name="show_list">ScnasList</string>
+    <string name="remove">Remove</string>
+    <string name="refresh_tour_list">Refresh List</string>
+    <string name="x_range_settings_text">Scan range of X axis</string>
+    <string name="y_range_settings_text">Scan range of Y axis</string>
+    <string name="range_x_hint">Enter X range here...</string>
+    <string name="range_y_hint">Enter Y range here...</string>
+    <string name="settings_textview">Settings</string> <string name="pref_nextscreen">Next Screen</string>
+    <string name="pref_nextscreen_summary">Next Screen Summary</string>
+
+    <string name="pref_title_next_screen_toggle_preference">Next Screen toggle preference</string>
+    <string name="pref_summary_next_screen_toggle_preference">Next Screen toggle preference</string>
+
+    <string name="settings_separator_title">RANGES</string>
+    <string name="x_range_title">X Range</string>
+    <string name="x_large_list_title">Default reminder time</string>
+    <string name="x_small_list_value">Default reminder time summary</string>
+    <string name="y_range_title">Y Range</string>
+    <string name="y_large_list_title">Default reminder time</string>
+    <string name="y_small_list_value">Default reminder time summary</string>
+
+</resources>

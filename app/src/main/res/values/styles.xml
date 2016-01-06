@@ -1,0 +1,113 @@
+<!--
+   Copyright (C) 2014 Google Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+    </style>
+
+
+    <style name="FrameworkRoot.Theme" parent="Theme.AppCompat.Light" />
+
+    <style name="Theme" parent="FrameworkRoot.Theme" />
+
+    <style name="Theme.TangoPlan.Base" parent="Theme">
+        <item name="windowActionBar">false</item>
+        <item name="colorControlNormal">@color/divider_dark</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:popupMenuStyle">@style/Widget.TangoPlan.PopupMenu</item>
+        <item name="colorAccent">@color/accent </item>
+        <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.LargePopupMenu
+        </item>
+    </style>
+
+    <style name="Theme.TangoPlan" parent="Theme.TangoPlan.Base" />
+
+    <style name="Theme.TangoPlan.WithNavDrawer" parent="Theme.TangoPlan" />
+
+    <style name="Theme.TangoPlan.Map" parent="Theme.TangoPlan.WithNavDrawer" />
+
+    <style name="Theme.TangoPlan.Health" parent="Theme.TangoPlan.WithNavDrawer" />
+
+    <style name="Theme.TangoPlan.AboutApp" parent="Theme.TangoPlan.WithNavDrawer" />
+    <style name="Theme.TangoPlan.Treatment" parent="Theme.TangoPlan.WithNavDrawer" />
+
+    <style name="Theme.TangoPlan.AddWell" parent="Theme.TangoPlan.WithNavDrawer" />
+    <style name="Theme.TangoPlan.WellDetail" parent="Theme.TangoPlan.WithNavDrawer" />
+    <style name="Theme.TangoPlan.MarkAPointOnMap" parent="Theme.TangoPlan" />
+
+    <!--<style name="Theme.TangoPlan.Launch" parent="Theme.TangoPlan">-->
+        <!--<item name="android:windowBackground">@drawable/background_launch</item>-->
+    <!--</style>-->
+
+    <style name="ActionBarThemeOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="colorControlNormal">#fff</item>
+        <item name="colorControlHighlight">#3fff</item>
+    </style>
+
+    <style name="Widget.TangoPlan.PopupMenu" parent="Widget.AppCompat.Light.PopupMenu">
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="TextAppearance.LargePopupMenu" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!--<style name="WellRatingBarStyle" parent="@android:style/Widget.RatingBar">-->
+        <!--<item name="android:progressDrawable">@drawable/ratingbar_drawable</item>-->
+        <!--<item name="android:minHeight">24dip</item>-->
+        <!--<item name="android:maxHeight">24dip</item>-->
+    <!--</style>-->
+    <style name="Theme.TangoPlan.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.TangoPlan.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--<style name="MapUiWidgetStyle">-->
+        <!--<item name="android:background">@drawable/map_type_satellite_switcher_drawable</item>-->
+        <!--<item name="android:clipToPadding">false</item>-->
+    <!--</style>-->
+
+</resources>
