@@ -1,4 +1,4 @@
-package md.fusionworks.sensorscanner;
+package md.fusionworks.sensorscanner.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,13 +18,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import md.fusionworks.sensorscanner.R;
+import md.fusionworks.sensorscanner.activities.settings.SettingsActivity;
 import md.fusionworks.sensorscanner.adapter.ScanAdapter;
 import md.fusionworks.sensorscanner.data.ScansDataView;
 import md.fusionworks.sensorscanner.engine.Serialization;
-import md.fusionworks.sensorscanner.settings.SettingsActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ScansActivity extends AppCompatActivity {
     private static final int LAYOUT = R.layout.activity_scans;
@@ -50,7 +51,9 @@ public class ScansActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(ScansActivity.this, SensorActivity.class);
+                intent.putExtra("Scan", tourName);
+                startActivity(intent);
 //                showInputDialog();
             }
         });

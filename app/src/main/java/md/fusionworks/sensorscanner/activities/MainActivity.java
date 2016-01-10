@@ -1,4 +1,4 @@
-package md.fusionworks.sensorscanner;
+package md.fusionworks.sensorscanner.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,13 +18,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import md.fusionworks.sensorscanner.R;
+import md.fusionworks.sensorscanner.activities.settings.SettingsActivity;
 import md.fusionworks.sensorscanner.adapter.TourAdapter;
 import md.fusionworks.sensorscanner.data.ToursDataView;
 import md.fusionworks.sensorscanner.engine.Serialization;
-import md.fusionworks.sensorscanner.settings.SettingsActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int LAYOUT = R.layout.activity_main;

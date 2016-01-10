@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import md.fusionworks.sensorscanner.R;
-import md.fusionworks.sensorscanner.ScansActivity;
+import md.fusionworks.sensorscanner.activities.ScansActivity;
 import md.fusionworks.sensorscanner.data.ScansDataView;
 import md.fusionworks.sensorscanner.data.ToursDataView;
 import md.fusionworks.sensorscanner.engine.FileOperations;
 import md.fusionworks.sensorscanner.engine.Serialization;
-
-import java.util.List;
 
 public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder> {
 

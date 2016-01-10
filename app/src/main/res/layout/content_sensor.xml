@@ -9,13 +9,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.ScansActivity"
-    tools:showIn="@layout/activity_scans">
+    tools:context=".activities.SensorActivity"
+    tools:showIn="@layout/activity_sensor">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/scans_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:textOff="Start Scan"
+        android:textOn="Stop Scan"
+        android:minHeight="80dp"
+        android:minWidth="120dp"
+        android:id="@+id/scan_toggle_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="41dp" />
 </RelativeLayout>

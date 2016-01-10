@@ -1,4 +1,4 @@
-package md.fusionworks.sensorscanner.settings;
+package md.fusionworks.sensorscanner.activities.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
