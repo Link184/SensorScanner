@@ -69,7 +69,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                             public void onClick(DialogInterface dialog, int id) {
                                 String scanName = editText.getText().toString();
                                 Bundle extras = getIntent().getExtras();
-                                FileOperations.saveToCVS(sensorData, extras.getString("Scan"), scanName);
+                                FileOperations.saveToCVS(sensorData, extras.getString("Scan"), scanName, true);
 
                                 scansDataView = (ScansDataView) Serialization.deserExternalData(Serialization.SCANS_FILE);
                                 scansDataView.setNameByKey(extras.getString("Scan"), scanName);
@@ -176,11 +176,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     buttonView.setChecked(true);
                     buttonView.setBackgroundColor(Color.parseColor("#FF0505")); //red
 
-                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_NORMAL);
-                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY), SensorManager.SENSOR_DELAY_NORMAL);
-                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION), SensorManager.SENSOR_DELAY_NORMAL);
-                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
+                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_FASTEST);
+                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_FASTEST);
+                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY), SensorManager.SENSOR_DELAY_FASTEST);
+                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION), SensorManager.SENSOR_DELAY_FASTEST);
 
                 } else {
                     buttonView.setChecked(false);
