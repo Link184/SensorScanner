@@ -1,5 +1,7 @@
 package md.fusionworks.sensorscanner.activities;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +19,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import md.fusionworks.sensorscanner.R;
@@ -26,11 +31,13 @@ import md.fusionworks.sensorscanner.data.SensorData;
 import md.fusionworks.sensorscanner.engine.FileOperations;
 import md.fusionworks.sensorscanner.engine.Serialization;
 
-public class SensorActivity extends AppCompatActivity implements SensorEventListener, CompoundButton.OnCheckedChangeListener{
+public class SensorActivity extends AppCompatActivity implements SensorEventListener, CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     private static final int LAYOUT = R.layout.activity_sensor;
 
     private SensorManager mSensorManager;
     private ToggleButton scanToggleButton;
+    private Button restartButton;
+    private boolean isRestarted = false;
 
     private SensorData sensorData;
     private ScansDataView scansDataView;
@@ -40,7 +47,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
 
-        sensorData = (SensorData) Serialization.deserExternalData(Serialization.DATA_FILE);
+        sensorData = new SensorData();
+//        sensorData = (SensorData) Serialization.deserExternalData(Serialization.DATA_FILE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,6 +57,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         scanToggleButton.setBackgroundColor(Color.parseColor("#259C25"));
         scanToggleButton.setOnCheckedChangeListener(this);
+        restartButton = (Button) findViewById(R.id.restart_button);
+        restartButton.setOnClickListener(this);
     }
 
     protected void showInputDialog() {
@@ -121,34 +131,61 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            String[] values = { " X: " + event.values[0],
-                     " Y: " + event.values[1],
-                     " Z: " + event.values[2]};
-            sensorData.getListAccelerometer().put(System.nanoTime() / 1000, values);
+            String[] values = {String.valueOf(event.values[0]),
+                    String.valueOf(event.values[1]),
+                    String.valueOf(event.values[2]), "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+            sensorData.getListSensorsHeap().put(System.nanoTime() / 1000, values);
             Log.d("SENSOR", "Is TYPE_ACCELEROMETER");
         }
         if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
-            String[] values = { " X: " + event.values[0],
-                    " Y: " + event.values[1],
-                    " Z: " + event.values[2]};
-            sensorData.getListGyroscope().put(System.nanoTime() / 1000, values);
+            String[] values = {"", "", "", String.valueOf(event.values[0]),
+                    String.valueOf(event.values[1]),
+                    String.valueOf(event.values[2]), "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+            sensorData.getListSensorsHeap().put(System.nanoTime() / 1000, values);
             Log.d("SENSOR", "Is TYPE_GYROSCOPE");
         }
         if (event.sensor.getType() == Sensor.TYPE_GRAVITY) {
-            String[] values = { " X: " + event.values[0],
-                    " Y: " + event.values[1],
-                    " Z: " + event.values[2]};
-            sensorData.getListGravity().put(System.nanoTime() / 1000, values);
+            String[] values = {"", "", "", "", "", "", String.valueOf(event.values[0]),
+                    String.valueOf(event.values[1]),
+                    String.valueOf(event.values[2]), "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+            sensorData.getListSensorsHeap().put(System.nanoTime() / 1000, values);
             Log.d("SENSOR", "Is TYPE_GRAVITY");
         }
         if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-            String[] values = { " X: " + event.values[0],
-                    " Y: " + event.values[1],
-                    " Z: " + event.values[2]};
-            sensorData.getListLinearAcceleration().put(System.nanoTime() / 1000, values);
+            String[] values = {"", "", "", "", "", "", "", "", "", String.valueOf(event.values[0]),
+                    String.valueOf(event.values[1]),
+                    String.valueOf(event.values[2]), "", "", "", "", "", "", "", "", "", "", "", ""};
+            sensorData.getListSensorsHeap().put(System.nanoTime() / 1000, values);
             Log.d("SENSOR", "Is TYPE_LINEAR_ACCELERATION");
         }
-
+        if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
+            String[] values = {"", "", "", "", "", "", "", "", "", "", "", "", String.valueOf(event.values[0]),
+                    String.valueOf(event.values[1]),
+                    String.valueOf(event.values[2]), "", "", "", "", "", "", "", "", ""};
+            sensorData.getListSensorsHeap().put(System.nanoTime() / 1000, values);
+            Log.d("SENSOR", "Is TYPE_PRESSURE");
+        }
+        if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+            String[] values = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", String.valueOf(event.values[0]),
+                    String.valueOf(event.values[1]),
+                    String.valueOf(event.values[2]), "", "", "", "", "", "",};
+            sensorData.getListSensorsHeap().put(System.nanoTime() / 1000, values);
+            Log.d("SENSOR", "Is TYPE_ROTATION_VECTOR");
+        }
+        if (event.sensor.getType() == Sensor.TYPE_GAME_ROTATION_VECTOR) {
+            String[] values = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", String.valueOf(event.values[0]),
+                    String.valueOf(event.values[1]),
+                    String.valueOf(event.values[2]), "", "", "",};
+            sensorData.getListSensorsHeap().put(System.nanoTime() / 1000, values);
+            Log.d("SENSOR", "Is TYPE_ROTATION_VECTOR");
+        }
+        if (event.sensor.getType() == Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR) {
+            String[] values = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", String.valueOf(event.values[0]),
+                    String.valueOf(event.values[1]),
+                    String.valueOf(event.values[2]),};
+            sensorData.getListSensorsHeap().put(System.currentTimeMillis(), values);
+            Log.d("SENSOR", "Is TYPE_ROTATION_VECTOR");
+        }
     }
 
     @Override
@@ -180,6 +217,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_FASTEST);
                     mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY), SensorManager.SENSOR_DELAY_FASTEST);
                     mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION), SensorManager.SENSOR_DELAY_FASTEST);
+                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_FASTEST);
+                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_FASTEST);
+                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_FASTEST);
+                    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE), SensorManager.SENSOR_DELAY_FASTEST);
 
                 } else {
                     buttonView.setChecked(false);
@@ -187,13 +228,42 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
                     mSensorManager.unregisterListener(this);
 
-                    Serialization.serExternalData(Serialization.DATA_FILE, sensorData);
+//                    Serialization.serExternalData(Serialization.DATA_FILE, sensorData);
 
-                    showInputDialog();
+                    if (!isRestarted) {
+                        showInputDialog();
+                        isRestarted = false;
+                    }
                 }
                 break;
             default:
                 Log.e("Error", "Toggle Button not found!");
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.restart_button:
+                isRestarted = true;
+                scanToggleButton.setChecked(false);
+                recreateActivityCompat(this);
+                Toast.makeText(this, "App was restarted", Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+
+    @SuppressLint("NewApi")
+    public static final void recreateActivityCompat(final Activity a) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            a.recreate();
+        } else {
+            final Intent intent = a.getIntent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            a.finish();
+            a.overridePendingTransition(0, 0);
+            a.startActivity(intent);
+            a.overridePendingTransition(0, 0);
         }
     }
 }

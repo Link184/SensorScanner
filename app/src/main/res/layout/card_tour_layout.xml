@@ -21,10 +21,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/delete_image"
-            android:src="@drawable/ic_close_circle"
+            android:src="@mipmap/ic_close_circle"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="29dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upload_to_drive_image"
+            android:src="@mipmap/ic_google_drive"
+            android:layout_alignTop="@+id/delete_image"
+            android:layout_toStartOf="@+id/delete_image"
+            android:layout_marginEnd="16dp" />
 
         <TextView
             android:layout_width="wrap_content"

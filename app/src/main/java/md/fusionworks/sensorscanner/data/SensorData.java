@@ -9,20 +9,14 @@ public class SensorData implements Serializable {
     private Map<Long, String[]> listGyroscope = new LinkedHashMap<Long, String[]>();
     private Map<Long, String[]> listGravity = new LinkedHashMap<Long, String[]>();
     private Map<Long, String[]> listLinearAcceleration = new LinkedHashMap<Long, String[]>();
+    private Map<Long, String[]> listPressure = new LinkedHashMap<Long, String[]>();
+    private Map<Long, String[]> listRotationVector = new LinkedHashMap<Long, String[]>();
+    private Map<Long, String[]> listRotationGame = new LinkedHashMap<Long, String[]>();
+    private Map<Long, String[]> listRotationGeomagneticRotation = new LinkedHashMap<Long, String[]>();
 
-    public Map<Long, String[]> getListAccelerometer() {
-        return listAccelerometer;
-    }
+    private Map<Long, String[]> listSensorsHeap = new LinkedHashMap<Long, String[]>();
 
-    public Map<Long, String[]> getListGyroscope() {
-        return listGyroscope;
-    }
-
-    public Map<Long, String[]> getListGravity() {
-        return listGravity;
-    }
-
-    public Map<Long, String[]> getListLinearAcceleration() {
-        return listLinearAcceleration;
+    public Map<Long, String[]> getListSensorsHeap() {
+        return listSensorsHeap;
     }
 }

@@ -73,5 +73,6 @@
     <string name="y_range_title">Y Range</string>
     <string name="y_large_list_title">Default reminder time</string>
     <string name="y_small_list_value">Default reminder time summary</string>
+    <string name="restart_button">Restart</string>
 
 </resources>

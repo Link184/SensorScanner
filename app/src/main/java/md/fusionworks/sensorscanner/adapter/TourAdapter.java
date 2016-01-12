@@ -70,6 +70,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
     public static class TourViewHolder extends RecyclerView.ViewHolder {
         protected TextView vName;
         protected ImageView vDeleteImage;
+        protected ImageView vUploadToDrive;
         protected TextView vDate;
 
         public TourViewHolder(View v) {
@@ -77,6 +78,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
             vName =  (TextView) v.findViewById(R.id.txtName);
             vDeleteImage = (ImageView) v.findViewById(R.id.delete_image);
             vDate = (TextView) v.findViewById(R.id.date_text);
+            vUploadToDrive = (ImageView) v.findViewById(R.id.upload_to_drive_image);
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

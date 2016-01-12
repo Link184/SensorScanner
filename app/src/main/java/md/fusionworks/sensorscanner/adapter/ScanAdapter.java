@@ -1,5 +1,6 @@
 package md.fusionworks.sensorscanner.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import md.fusionworks.sensorscanner.R;
+import md.fusionworks.sensorscanner.activities.DriveActivity;
 import md.fusionworks.sensorscanner.activities.ScansActivity;
 import md.fusionworks.sensorscanner.data.ScansDataView;
 import md.fusionworks.sensorscanner.engine.FileOperations;
@@ -47,6 +49,17 @@ public class ScanAdapter extends RecyclerView.Adapter<ScanAdapter.ScanViewHolder
                 Serialization.serExternalData(Serialization.SCANS_FILE, scansDataView1);
             }
         });
+
+        holder.vUploadToDrive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScansDataView scansDataView1 = (ScansDataView) Serialization.deserExternalData(Serialization.SCANS_FILE);
+                Intent intent = new Intent(v.getContext(), DriveActivity.class);
+                intent.putExtra("Scan", scansDataView1.getNameListByKey(ScansActivity.getTourName()).get(position));
+                intent.putExtra("Tour", ScansActivity.getTourName());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -58,6 +71,7 @@ public class ScanAdapter extends RecyclerView.Adapter<ScanAdapter.ScanViewHolder
         protected TextView vName;
         protected ImageView vDeleteImage;
         protected TextView vDate;
+        protected ImageView vUploadToDrive;
 
 
         public ScanViewHolder(View v) {
@@ -65,6 +79,7 @@ public class ScanAdapter extends RecyclerView.Adapter<ScanAdapter.ScanViewHolder
             vName =  (TextView) v.findViewById(R.id.txtName);
             vDeleteImage = (ImageView) v.findViewById(R.id.delete_image);
             vDate = (TextView) v.findViewById(R.id.date_text);
+            vUploadToDrive = (ImageView) v.findViewById(R.id.upload_to_drive_image);
         }
     }
 

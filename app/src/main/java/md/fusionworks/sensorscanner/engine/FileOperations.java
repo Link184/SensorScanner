@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -23,17 +22,17 @@ public class FileOperations {
         new File(Environment.getExternalStorageDirectory() + "/SensorData/").mkdir();
         new File(Environment.getExternalStorageDirectory() + "/SensorData/" + path).mkdir();
         File file = new File(Environment.getExternalStorageDirectory() + "/SensorData/" + path, fileName + ".cvs");
-        StringBuffer fileContent = new StringBuffer();
-        for (Map.Entry<Long, String[]> entry: sensorData.getListAccelerometer().entrySet()) {
-            fileContent.append("\n Time: " + entry.getKey() + ", Accel: " + Arrays.toString(entry.getValue()));
+        StringBuffer fileContent = new StringBuffer("Time,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,GravX,GravY,GravZ,LAccX,LAccY,LAccZ,PresX,PresY,PresZ,RotVX,RotVY,RotVZ,RotGX,RotGY,RotGZ,RotGRX,RotGRY,RotGRZ");
+        for (Map.Entry<Long, String[]> entry : sensorData.getListSensorsHeap().entrySet()) {
+            fileContent.append("\n" + entry.getKey() + "," + prepereArray(entry.getValue()));
         }
         try {
-            byte[] buffer = new byte[1024];
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(fileContent.toString());
             bufferedWriter.flush();
             bufferedWriter.close();
 
+            byte[] buffer = new byte[1024];
             if (toZIP){
                 long begin = System.nanoTime();
                 FileOutputStream fileOutputStream = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/SensorData/" + path, fileName + ".zip"));
@@ -57,6 +56,23 @@ public class FileOperations {
             e.printStackTrace();
         }
     }
+
+    private static String prepereArray(String[] array) {
+        if (array == null) {
+            return "";
+        }
+        if (array.length == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder(array.length * 7);
+        sb.append(array[0]);
+        for (int i = 1; i < array.length; i++) {
+            sb.append(",");
+            sb.append(array[i]);
+        }
+        return sb.toString();
+    }
+
 
     public static boolean removeFile(String path, String fileName){
         File file = new File(Environment.getExternalStorageDirectory() + "/SensorData/" + path, fileName + ".cvs");
